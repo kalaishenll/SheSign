@@ -1,0 +1,2 @@
+"id","created_at","email","first_name","last_name","password","status","updated_at"
+"1","2025-04-07 20:07:41.051254","admin@gmail.com","Admin",NULL,"$2a$10$ys3VEzxC/zm4hRcHBZdakOVGjRniSa4.nG5Q3pCgm/b2Tk4gf/CWO","ACTIVE","2025-04-07 20:07:41.051334"

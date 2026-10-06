@@ -1,0 +1,27 @@
+image: maven:3.8.5-openjdk-17
+
+stages:
+  - build
+  - dockerBuild
+
+variables:
+  IMAGE_TAG: $CI_REGISTRY_IMAGE/patient-smart-qr:latest
+
+Build-App:
+  stage: build
+  script:
+    - mvn clean package -DskipTests
+  artifacts:
+    paths:
+      - target/*.jar
+
+Build-And-Push-Image:
+  stage: dockerBuild
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker build -t $IMAGE_TAG .
+    - docker push $IMAGE_TAG
+
